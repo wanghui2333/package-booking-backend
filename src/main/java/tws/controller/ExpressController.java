@@ -15,6 +15,8 @@ import java.util.List;
 @RequestMapping("/express")
 public class ExpressController {
 
+    private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+
     @Autowired
     private ExpressMapper expressMapper;
 
@@ -27,12 +29,21 @@ public class ExpressController {
     @PostMapping("")
     @CrossOrigin
     public ResponseEntity<Express> insert(@RequestBody Express express) {
-        SimpleDateFormat dateFormat= new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
 
-        express.setStatus("未取件");
-        express.setDate(dateFormat.format(new Date()));
+        express.setDate(DATE_FORMAT.format(new Date()));
 
         expressMapper.insert(express);
+
+        return ResponseEntity.created(URI.create("/express/" + express.getId())).body(express);
+    }
+
+    @PatchMapping("")
+    @CrossOrigin
+    public ResponseEntity<Express> patchStatus(@RequestBody Express express) {
+
+        express.setDate(DATE_FORMAT.format(new Date()));
+
+        expressMapper.patchStatus(express);
 
         return ResponseEntity.created(URI.create("/express/" + express.getId())).body(express);
     }

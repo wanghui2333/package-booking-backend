@@ -12,4 +12,6 @@ import java.util.List;
 public interface ExpressMapper {
     List<Express> selectAll();
     void insert(@Param("express") Express express);
+
+    void patchStatus(@Param("express") Express express);
 }

@@ -10,4 +10,12 @@
        values(#{express.id},#{express.name},#{express.phone},#{express.status},#{express.date});
 
     </insert>
+
+    <update id="patchStatus" parameterType="tws.entity.Express">
+
+       update `express`
+       set status = #{express.status}, date = #{express.date}
+       where id = #{express.id};
+
+    </update>
 </mapper>
