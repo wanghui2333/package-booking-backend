@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="tws.repository.EmployeeMapper">
-    <select id="selectAll" resultType="tws.entity.Employee">
-        select * from `employee`;
+<mapper namespace="tws.repository.ExpressMapper">
+    <select id="selectAll" resultType="tws.entity.Express">
+        select * from `express`;
     </select>
 
-    <insert id="insert" parameterType="tws.entity.Employee">
-       insert into `employee`(`id`,`name`,`age`) values(#{employee.id},#{employee.name},#{employee.age});
+    <insert id="insert" parameterType="tws.entity.Express">
+       insert into `express`
+       values(#{express.id},#{express.name},#{express.phone},#{express.status},#{express.date});
+
     </insert>
 </mapper>
